@@ -16,7 +16,7 @@
         </view>
         <picker-view bindchange="handleLangPickerChange">
             <picker-view-column>
-                <view wx:for="{{ langs }}" class="picker-item" >{{ item }}</view>
+                <view wx:for="{{ langPickerItems }}" class="picker-item" >{{ item }}</view>
             </picker-view-column>
         </picker-view>
     </view>

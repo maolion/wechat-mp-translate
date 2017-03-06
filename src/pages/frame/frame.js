@@ -3,7 +3,7 @@ import { Event } from '../../commons/kits/index';
 import StatusTip from '../../commons/widgets/status-tips/status-tips';
 import TabBar from './components/tabbar/tabbar';
 import HomePage from './components/home/home';
-import StarredPage from './components/starred/starred';
+import StarredsPage from './components/starreds/starreds';
 import LangPicker from './components/lang-picker/lang-picker';
 
 //获取应用实例
@@ -14,12 +14,13 @@ const app = getApp();
     state => {  // map state to props
         return {
             app: state.app,
+            langs: state.common.langs,
             starred: state.starred,
             histories: state.histories
         }
     }
 )
-@mixin(HomePage, StarredPage, StatusTip, TabBar, LangPicker)
+@mixin(HomePage, StarredsPage, StatusTip, TabBar, LangPicker)
 class Frame extends Event {
     constructor() {
         super();

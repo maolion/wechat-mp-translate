@@ -16,7 +16,8 @@
 
             <button
                 animation="{{ destLangButtonAnimationData }}"
-                class="lang-btn">
+                class="lang-btn"
+                bindtap="handleDestLangButtonTap">
                 <text>{{ destLang }}</text>
             </button>
         </view>

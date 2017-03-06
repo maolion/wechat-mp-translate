@@ -23,6 +23,22 @@ server.post('/api/login', function(req, res) {
     }
 });
 
+server.get('/api/langs', function(req, res) {
+    res.json(new Response([
+        '中文 (简体)',
+        '中文 (繁体)',
+        '英文',
+        '泰宁话',
+        '闽南话',
+        '四川话',
+        '东北话',
+        '上海话',
+        '日文',
+        '韩文',
+        '俄文'
+    ]));
+});
+
 ///////
 
 function Response(data) {

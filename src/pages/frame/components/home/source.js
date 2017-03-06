@@ -1,7 +1,7 @@
 
 export default {
     data: {
-        sourceLang: "英文",
+        sourceLang: "英文", // TODO: 不应该写死
         destLang: "中文 (简体)",
         sourceLangButtonAnimationData: {},
         destLangButtonAnimationData: {}
@@ -9,10 +9,10 @@ export default {
 
     onReady() {
         this._langButtonAnimation = wx.createAnimation({
-            duration: 300,
+            duration: 250,
             timingFunction: "ease"
         });
-        console.log(this);
+
         this._langTransferDelayTimer = null;
     },
 
@@ -53,9 +53,29 @@ export default {
             });
     },
 
+
+    handleDestLangButtonTap() {
+        this.pickLang([this.data.sourceLang, this.data.destLang])
+            .then(lang => {
+                if (this.data.destLang === lang) {
+                    return;
+                }
+
+                this.setData({
+                    destLangButtonAnimationData: this._getLangButtonAnimationData(),
+                });
+
+                this._langTransferDelayTimer = setTimeout(() => {
+                    this.setData({
+                        destLang: lang,
+                    });
+                }, 200);
+            });
+    },
+
     _getLangButtonAnimationData() {
         this._langButtonAnimation.opacity(0).step();
-        this._langButtonAnimation.opacity(1).step({ duration: 300 });
+        this._langButtonAnimation.opacity(1).step({ duration: 240 });
         return this._langButtonAnimation.export();
     }
 }

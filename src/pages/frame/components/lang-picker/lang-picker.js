@@ -1,19 +1,17 @@
 import { Promise } from '../../../../commons/kits/index';
-
-const LANGS = ['中文 (简体)', '中文 (繁体)', '英文', '闽南话', '四川话', '东北话', '上海话', '日文', '韩文', '俄文']
-
+import actions from '../../../../actions/actions';
 
 export default {
     data: {
-        languages: [],
+        langPickerItems: [],
         showLangPicker: false,
         langPickerAnimationData: {}
     },
 
     onReady() {
         this._langPickerAnimation = wx.createAnimation({
-            duration: 200,
-            timingFunction: "ease"
+            duration: 240,
+            timingFunction: "ease-in-out"
         });
 
         this._langPickerClosing = false;
@@ -22,23 +20,43 @@ export default {
     },
 
     pickLang(ignoreLangs) {
-        let langs = LANGS.slice();
-        let n = 0;
+        return Promise
+            .then(() => {
+                if (this.data.langs) {
+                    return this.data.langs;
+                } else {
+                    wx.showToast({
+                        title: '加载数据...',
+                        icon: 'loading',
+                        duration: 10000
+                    });
+                    return actions.common.getLangs();
+                }
+            })
+            .handle(() => {
+                wx.hideToast();
+            })
+            .then(langs => {
+                langs = langs.slice();
+                let n = 0;
 
-        for (let i = 0, l = langs.length; i < l; i++) {
-            let lang = langs[i];
+                for (let i = 0, l = langs.length; i < l; i++) {
+                    let lang = langs[i];
 
-            if (ignoreLangs.indexOf(lang) === -1) {
-                langs[n++] = lang;
-            }
-        }
+                    if (ignoreLangs.indexOf(lang) === -1) {
+                        langs[n++] = lang;
+                    }
+                }
 
-        langs.length = n;
+                langs.length = n;
 
-        this._langValue = langs[0];
-        this._newLangValuePromise = new Promise();
-        this._openLangPicker(langs);
-        return this._newLangValuePromise;
+                this._langValue = langs[0];
+                this._newLangValuePromise = new Promise();
+                this._openLangPicker(langs);
+                return this._newLangValuePromise;
+            })
+
+
     },
 
     handleLangPickerOkButtonTap() {
@@ -51,10 +69,10 @@ export default {
     },
 
     handleLangPickerChange(e) {
-        this._langValue = this.data.langs[e.detail.value[0]];
+        this._langValue = this.data.langPickerItems[e.detail.value[0]];
     },
 
-    _openLangPicker(langs) {
+    _openLangPicker(langPickerItems) {
 
         this._langPickerClosing = false;
         this._langPickerAnimation
@@ -65,7 +83,7 @@ export default {
         this.setData({
             langPickerAnimationData: this._langPickerAnimation.export(),
             showLangPicker: true,
-            langs
+            langPickerItems
         });
     },
 
@@ -88,7 +106,7 @@ export default {
         setTimeout(() => {
             this._langPickerClosing = false;
             this.setData({
-                langs: [],
+                langPickerItems: [],
                 showLangPicker: false
             });
 
@@ -97,6 +115,6 @@ export default {
             } else {
                 this._newLangValuePromise.reject();
             }
-        }, 160);
+        }, 220);
     }
 }
