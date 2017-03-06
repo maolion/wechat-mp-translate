@@ -1,0 +1,17 @@
+<view class="tabbar">
+    <button
+        class="tab-btn {{ subpage == 'home' ? 'selected' : '' }}"
+        bindtap="switchToIndex">
+        <image
+            class="icon"
+            src="{{ subpage == 'home' ? '/assets/icons/home-focus.png' : '/assets/icons/home.png' }}" />
+    </button>
+    <button
+        class="tab-btn {{ subpage == 'starreds' ? 'selected' : '' }}"
+        bindtap="switchToContacts">
+        <image
+            class="icon"
+            src="{{ subpage == 'starreds' ? '/assets/icons/starreds-focus.png' : '/assets/icons/starreds.png' }}" />
+    </button>
+    <view class="indicator to-{{ subpage }}"></view>
+</view>

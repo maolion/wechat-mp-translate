@@ -1,0 +1,23 @@
+<view class="lang-picker {{ showLangPicker ? 'show' : '' }}">
+    <view
+        animation="{{ langPickerAnimationData }}"
+        class="picker-wrapper">
+        <view class="button-bar">
+            <button
+                class="btn cancel-btn"
+                bindtap="handleLangPickerCancelButtonTap">
+                <text>取消</text>
+            </button>
+            <Button
+                class="btn ok-btn"
+                bindtap="handleLangPickerOkButtonTap">
+                <text>确认</text>
+            </Button>
+        </view>
+        <picker-view bindchange="handleLangPickerChange">
+            <picker-view-column>
+                <view wx:for="{{ langs }}" class="picker-item" >{{ item }}</view>
+            </picker-view-column>
+        </picker-view>
+    </view>
+</view>

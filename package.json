@@ -1,0 +1,37 @@
+{
+  "name": "wechat-mp-translate",
+  "version": "0.0.1",
+  "main": "",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-3": "^6.17.0",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-debug": "^3.0.0",
+    "gulp-ignore": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-less": "^3.3.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-watch": "^4.3.11",
+    "mockjs": "^1.0.1-beta3",
+    "rimraf": "^2.5.4"
+  },
+  "scripts": {
+    "start": "(cd test-server && (nodemon index.js || node index.js)) & gulp",
+    "build": "rimraf dist && gulp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:maolion/wechat-mp-translate.git"
+  },
+  "author": "https://github.com/maolion",
+  "license": "MIT"
+}

@@ -1,0 +1,28 @@
+<view class="home-page page-container">
+    <view class="source-panel">
+        <view class="lang-select">
+            <button
+                animation="{{ sourceLangButtonAnimationData }}"
+                class="lang-btn"
+                bindtap="handleSourceLangButtonTap">
+                <text>{{ sourceLang }}</text>
+            </button>
+
+            <button
+                class="transfer-btn"
+                bindtap="handleLangTransferButtonTap">
+                <image class="icon" src="/assets/icons/transfer.png" />
+            </button>
+
+            <button
+                animation="{{ destLangButtonAnimationData }}"
+                class="lang-btn">
+                <text>{{ destLang }}</text>
+            </button>
+        </view>
+
+        <view class="input-placeholder">
+            <text>点击输入翻译内容</text>
+        </view>
+    </view>
+</view>

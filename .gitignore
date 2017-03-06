@@ -1,0 +1,5 @@
+.wing/
+.vscode/
+dist/
+node_modules/
+src/config.js

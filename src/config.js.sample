@@ -1,0 +1,4 @@
+export default {
+    // 用于指定 小程序调用的接口服务器域
+    "api_host": "http://localhost:8283"
+}

@@ -1,0 +1,27 @@
+<template name="fail-tip">
+    <view class="fail-tip status-tip">
+        <image 
+            src="/assets/icons/network-fail.png" 
+            class="icon" />
+        <text class="text">加载数据失败!</text>
+        <button 
+            class="btn"
+            bindtap="handleStatusTipRetryBtnTap">
+            点击重试
+        </button>
+    </view>
+</template>
+
+<template name="empty-tip">
+    <view class="empty-tip status-tip">
+        <image 
+            src="/assets/icons/empty.png" 
+            class="icon" />
+        <text class="text">暂无数据</text>
+        <button 
+            bindtap="handleStatusTipRefrshBtnTap"
+            class="btn">
+            点击刷新
+        </button>
+    </view>
+</template>

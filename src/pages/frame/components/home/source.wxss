@@ -1,0 +1,89 @@
+@import "../../../../constants.wxss";
+
+@LANG_SELECT_HEIGHT: 80rpx;
+
+.source-panel {
+    width: 100%;
+    background: #fff;
+    border-bottom: 2rpx solid rgba(0, 0, 0, .3);
+}
+
+.source-panel .lang-select {
+    display: flex;
+    width: 100%;
+    height: @LANG_SELECT_HEIGHT;
+    border-bottom: 1rpx solid rgba(0, 0, 0, .15);
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    button {
+        background: transparent;
+        border-radius: 0;
+        padding: 0;
+        line-height: 0;
+    }
+
+    button:after {
+        opacity: 0;
+        border: 0;
+        opacity: 0;
+        border-radius: 0;
+        transition: opacity ease .2s;
+    }
+
+    button.button-hover:after {
+        opacity: 0.3;
+    }
+
+
+    .lang-btn {
+        flex: 1;
+        height: 100%;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lang-btn text {
+        line-height: 1;
+        font-size: 26rpx;
+        color: @MAIN_COLOR;
+    }
+
+    .lang-btn:after {
+        background: @MAIN_COLOR;
+    }
+
+    .transfer-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: @LANG_SELECT_HEIGHT;
+        height: 100%;
+    }
+
+    .transfer-btn .icon {
+        width: 38rpx;
+        height: 38rpx;
+    }
+
+    .transfer-btn:after {
+        background: #888;
+    }
+}
+
+.source-panel .input-placeholder {
+    height: 160rpx;
+    width: 100%;
+    padding: 20rpx 40rpx;
+    box-sizing: border-box;
+
+    text {
+        font-size: 30rpx;
+        color: #666;
+    }
+}
+

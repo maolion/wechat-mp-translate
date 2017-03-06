@@ -1,0 +1,6 @@
+@import "./source.wxss";
+
+.home-page {
+    height: 100%;
+    position: relative;
+}

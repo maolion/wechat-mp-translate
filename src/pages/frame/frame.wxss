@@ -1,0 +1,16 @@
+@import '../../commons/widgets/status-tips/status-tips.wxss';
+@import './components/home/home.wxss';
+@import './components/starreds/starreds.wxss';
+@import './components/tabbar/tabbar.wxss';
+@import './components/lang-picker/lang-picker.wxss';
+
+.tab-content-wrapper {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+.page-container {
+    flex: 1;
+    width: 100%;
+}

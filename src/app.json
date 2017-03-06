@@ -1,0 +1,14 @@
+{
+    "pages":[
+        "pages/frame/frame",
+        "pages/launch/launch"
+    ],
+    "window":{
+        "backgroundColor": "#eeeeee",
+        "backgroundTextStyle":"light",
+        "navigationBarBackgroundColor": "#4688F1",
+        "navigationBarTitleText": "翻译工具",
+        "navigationBarTextStyle":"white",
+        "enablePullDownRefresh": false
+    }
+}

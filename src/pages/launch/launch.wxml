@@ -1,0 +1,20 @@
+<view class="container">
+    <view
+        wx:if="{{ !logging && failed }}"
+        class="login-failed-tip">
+        <icon
+            class="icon"
+            type="warn"
+            size="64"
+            color="red" />
+        <text class="text">
+            登录异常，请重新尝试登录!
+        </text>
+
+        <button
+            bindtap="login"
+            type="primary">
+            重新登录
+        </button>
+    </view>
+</view>

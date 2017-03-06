@@ -1,0 +1,28 @@
+.status-tip {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
+    .icon {
+        width: 128rpx;
+        height: 128rpx;
+        opacity: 0.2;
+        margin-bottom: 10rpx;
+    }
+
+    .text {
+        font-size: 26rpx;
+        color: rgba(0, 0, 0, .4);
+        margin-bottom: 30rpx; 
+    }
+
+    .btn {
+        font-size: 26rpx;
+        padding: 0 20rpx;
+        color: rgba(0, 0, 0, .8);
+    }
+}

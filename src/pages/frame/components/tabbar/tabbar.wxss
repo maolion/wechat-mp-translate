@@ -1,0 +1,63 @@
+@import "../../../../constants.wxss";
+
+@TABBAR_HEIGHT: 100rpx;
+
+.tabbar {
+    height: @TABBAR_HEIGHT;
+    background: #FCFCFC;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    box-shadow: 0 0 10rpx 5rpx rgba(0, 0, 0, .2);
+}
+
+.tabbar .indicator {
+    position: absolute;
+    height: 7rpx;
+    top: 0;
+    left: 0;
+    width: 50%;
+    background: @MAIN_COLOR;
+    transition: transform linear .1s;
+
+    &.to-home {
+        transform: translate(0, 0);
+    }
+
+    &.to-starreds {
+        transform: translate(100%, 0);
+    }
+}
+
+.tabbar .tab-btn {
+    background: transparent;
+    border-radius: 0;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    line-height:  1;
+    padding: 0;
+
+    &.button-hover:after {
+        opacity: .3;
+    }
+
+    &:after {
+        background: @MAIN_COLOR;
+        border-radius: 0;
+        opacity: 0;
+        border: none;
+        transition: opacity ease 0.2s;
+    }
+
+    .icon {
+        width: 42rpx;
+        height: 42rpx;
+    }
+}
+

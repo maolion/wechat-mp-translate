@@ -1,0 +1,16 @@
+.login-failed-tip {
+    display: flex;
+    padding-top: 200rpx;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+        
+    }
+
+    .text {
+        font-size: 30rpx;
+        margin-bottom: 20rpx;
+    }
+}

@@ -1,0 +1,8 @@
+<view class="container">
+    <view class="tab-content-wrapper">
+        <include src="components/home/home.wxml" />
+        <include src="components/starreds/starreds.wxml" />
+    </view>
+    <include src="components/tabbar/tabbar.wxml" />
+    <include src="components/lang-picker/lang-picker.wxml" />
+</view>
