@@ -1,7 +1,8 @@
 var Path = require("path");
 var Mock = require("mockjs");
 var server = require("./server");
-var Constants = require('./constants.js');
+var Translate = require('./translate');
+var Constants = require('./constants');
 
 var HOST = 'http://localhost:' + Constants.PORT ;
 
@@ -24,19 +25,45 @@ server.post('/api/login', function(req, res) {
 });
 
 server.get('/api/langs', function(req, res) {
-    res.json(new Response([
-        '中文 (简体)',
-        '中文 (繁体)',
-        '英文',
-        '泰宁话',
-        '闽南话',
-        '四川话',
-        '东北话',
-        '上海话',
-        '日文',
-        '韩文',
-        '俄文'
-    ]));
+    res.json(new Response(Constants.LANGS));
+});
+
+// var task = [
+//     ['hello', 'en', 'zh'],
+//     ['world', 'en', 'zh'],
+//     ['你好', 'zh', 'en'],
+//     ['世界', 'zh', 'en'],
+//     ['from', 'en', 'zh'],
+//     ['mini', 'en', 'zh'],
+//     ['program', 'en', 'zh']
+// ]
+// var rets = [];
+// next();
+
+// function next() {
+//     if (!task.length) {
+//         console.log(JSON.stringify(rets, null, 2));
+//         return;
+//     }
+
+//     Translate.query.apply(null, task.shift())
+//         .then(ret => {
+//             rets.push({
+//                 date: Date.now(),
+//                 data: ret
+//             });
+
+//             next();
+//         })
+// }
+server.get('/api/histories', function(req, res) {
+    // res.json(new Response(
+    //     Mock.mock({
+    //         'list|0-20': {
+    //             source: ""
+    //         }
+    //     }).list
+    // ));
 });
 
 ///////
@@ -56,3 +83,4 @@ function ResponseError(code, message) {
     };
     this.data = null;
 }
+

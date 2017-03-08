@@ -18,7 +18,7 @@ npm run start
 然后在 微信web开发者工具里添加该项目, 项目目录是 ```path/to/wechat-mp-translate/dist```
 
 
-## 源码调试
+## 源码编辑/调试
 
 - 推介使用 EgretWing 编辑器
 - 在项目根目录 创建 ```.wing/settings.json``` 文件, 并加入下面的配置
@@ -42,3 +42,5 @@ npm run start
     }
   }
   ```
+
+- 运行 ```npm run start```命令执行源代码同步编译

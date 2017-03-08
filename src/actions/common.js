@@ -14,11 +14,19 @@ export function getLangs() {
     return apis.common.getLangs()
         .then(res => {
             let langs = res.data || [];
+            let ret = { mapping: {}, texts: [] };
+
+            for (let lang of langs) {
+                ret.mapping[lang.key] = lang.text;
+                ret.mapping[lang.text] = lang.key;
+                ret.texts.push(lang.text);
+            }
+
             store.dispatch({
                 type: GET_LANGS,
-                payload: langs
+                payload: ret
             });
 
-            return langs;
+            return ret;
         });
 }

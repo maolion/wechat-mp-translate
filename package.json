@@ -21,6 +21,7 @@
     "gulp-sourcemaps": "^2.4.1",
     "gulp-watch": "^4.3.11",
     "mockjs": "^1.0.1-beta3",
+    "node-fetch": "^1.6.3",
     "rimraf": "^2.5.4"
   },
   "scripts": {

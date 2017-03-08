@@ -13,3 +13,4 @@ server.use('/', express.static(Path.join(__dirname, 'statics')));
 server.listen(port, function() {
     console.log('server started at http://location:' + port);
 });
+

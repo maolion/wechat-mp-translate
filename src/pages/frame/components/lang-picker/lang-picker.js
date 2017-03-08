@@ -30,14 +30,15 @@ export default {
                         icon: 'loading',
                         duration: 10000
                     });
+
                     return actions.common.getLangs();
                 }
             })
-            .handle(() => {
+            .handle(error => {
                 wx.hideToast();
             })
             .then(langs => {
-                langs = langs.slice();
+                langs = langs.texts.slice();
                 let n = 0;
 
                 for (let i = 0, l = langs.length; i < l; i++) {
@@ -55,7 +56,14 @@ export default {
                 this._openLangPicker(langs);
                 return this._newLangValuePromise;
             })
-
+            .fail(reason => {
+                wx.showModal({
+                    title: "提示",
+                    content: "获取数据失败!",
+                    showCancel: false
+                });
+                throw reason;
+            });
 
     },
 

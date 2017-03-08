@@ -1,0 +1,137 @@
+[
+  {
+    "date": 1488978105271,
+    "data": {
+      "source": {
+        "lang": "en",
+        "content": "hello",
+        "phonetic": "hə'ləʊ; he-"
+      },
+      "dest": {
+        "content": "你好",
+        "phonetic": "nǐ hǎo",
+        "explains": [
+          "n. 表示问候， 惊奇或唤起注意时的用语",
+          "int. 喂；哈罗",
+          "n. (Hello)人名；(法)埃洛"
+        ],
+        "lang": "zh"
+      }
+    }
+  },
+  {
+    "date": 1488978105562,
+    "data": {
+      "source": {
+        "lang": "en",
+        "content": "world",
+        "phonetic": "wɜːld"
+      },
+      "dest": {
+        "content": "世界",
+        "phonetic": "shì jiè",
+        "explains": [
+          "n. 世界；领域；世俗；全人类；物质生活"
+        ],
+        "lang": "zh"
+      }
+    }
+  },
+  {
+    "date": 1488978105859,
+    "data": {
+      "source": {
+        "lang": "zh",
+        "content": "你好",
+        "phonetic": "nǐ hǎo"
+      },
+      "dest": {
+        "content": "How are you",
+        "phonetic": "haʊ ɑr ju",
+        "explains": [
+          "hello；hi"
+        ],
+        "lang": "en"
+      }
+    }
+  },
+  {
+    "date": 1488978106200,
+    "data": {
+      "source": {
+        "lang": "zh",
+        "content": "世界",
+        "phonetic": "shì jiè"
+      },
+      "dest": {
+        "content": "The world",
+        "explains": [
+          "world",
+          "earth",
+          "welt"
+        ],
+        "lang": "en"
+      }
+    }
+  },
+  {
+    "date": 1488978106521,
+    "data": {
+      "source": {
+        "lang": "en",
+        "content": "from",
+        "phonetic": "frɒm; frəm"
+      },
+      "dest": {
+        "content": "从",
+        "phonetic": "cōng,cóng",
+        "explains": [
+          "prep. 来自，从；由于；今后",
+          "n. (From)人名；(瑞典、丹、德)弗罗姆"
+        ],
+        "lang": "zh"
+      }
+    }
+  },
+  {
+    "date": 1488978106832,
+    "data": {
+      "source": {
+        "lang": "en",
+        "content": "mini",
+        "phonetic": "'mɪnɪ"
+      },
+      "dest": {
+        "content": "迷你",
+        "phonetic": "mí nǐ",
+        "explains": [
+          "n. 迷你型；微型汽车；超短裙",
+          "abbr. 微型汽车（minicar）；微型计算机（minicomputer）",
+          "adj. 微型的；袖珍的",
+          "n. (Mini)人名；(意、土、法)米尼"
+        ],
+        "lang": "zh"
+      }
+    }
+  },
+  {
+    "date": 1488978107197,
+    "data": {
+      "source": {
+        "lang": "en",
+        "content": "program",
+        "phonetic": "'prəʊɡræm"
+      },
+      "dest": {
+        "content": "程序",
+        "phonetic": "chéng xù",
+        "explains": [
+          "n. 程序；计划；大纲",
+          "vt. 用程序指令；为…制订计划；为…安排节目",
+          "vi. 编程序；安排节目；设计电脑程式"
+        ],
+        "lang": "zh"
+      }
+    }
+  }
+]

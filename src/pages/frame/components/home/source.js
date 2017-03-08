@@ -2,7 +2,7 @@
 export default {
     data: {
         sourceLang: "英文", // TODO: 不应该写死
-        destLang: "中文 (简体)",
+        destLang: "简体中文",
         sourceLangButtonAnimationData: {},
         destLangButtonAnimationData: {}
     },
