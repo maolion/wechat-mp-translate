@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: flex-start;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     background-color: @BACKGROUND_COLOR;
+    overflow: hidden;
 }

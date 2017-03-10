@@ -7,9 +7,13 @@ import store from '../store';
 
 
 import {
-    GET_LANGS
+    GET_LANGS,
+    GET_HISTORIES
 } from '../action-type-map';
 
+/**
+ * 获取支持的语言列表
+ */
 export function getLangs() {
     return apis.common.getLangs()
         .then(res => {

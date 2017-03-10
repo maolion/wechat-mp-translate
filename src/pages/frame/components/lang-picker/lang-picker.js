@@ -1,6 +1,11 @@
 import { Promise } from '../../../../commons/kits/index';
 import actions from '../../../../actions/actions';
 
+const CLOSED = 1;
+const CLOSING = 2;
+const OPENING = 4;
+const OPENED = 8;
+
 export default {
     data: {
         langPickerItems: [],
@@ -14,9 +19,10 @@ export default {
             timingFunction: "ease-in-out"
         });
 
-        this._langPickerClosing = false;
+        this._langPickerState = CLOSED;
         this._newLangValuePromise = null;
         this._langValue = null;
+        this._fxDelayTimer = null;
     },
 
     pickLang(ignoreLangs) {
@@ -26,6 +32,7 @@ export default {
                     return this.data.langs;
                 } else {
                     wx.showToast({
+                        mask: true,
                         title: '加载数据...',
                         icon: 'loading',
                         duration: 10000
@@ -36,6 +43,14 @@ export default {
             })
             .handle(error => {
                 wx.hideToast();
+            })
+            .fail(reason => {
+                wx.showModal({
+                    title: "提示",
+                    content: "获取数据失败!",
+                    showCancel: false
+                });
+                throw reason;
             })
             .then(langs => {
                 langs = langs.texts.slice();
@@ -56,14 +71,6 @@ export default {
                 this._openLangPicker(langs);
                 return this._newLangValuePromise;
             })
-            .fail(reason => {
-                wx.showModal({
-                    title: "提示",
-                    content: "获取数据失败!",
-                    showCancel: false
-                });
-                throw reason;
-            });
 
     },
 
@@ -81,26 +88,39 @@ export default {
     },
 
     _openLangPicker(langPickerItems) {
-
-        this._langPickerClosing = false;
-        this._langPickerAnimation
-            .opacity(1)
-            .translateY(0)
-            .step();
-
-        this.setData({
-            langPickerAnimationData: this._langPickerAnimation.export(),
-            showLangPicker: true,
-            langPickerItems
-        });
-    },
-
-    _closeLangPicker() {
-        if (this._langPickerClosing) {
+        if (this._langPickerState & OPENING + OPENED) {
             return;
         }
 
-        this._langPickerClosing = true;
+        this._langPickerState = OPENING;
+
+        this.setData({
+            langPickerItems,
+            showLangPicker: true
+        });
+
+        clearTimeout(this._fxDelayTimer);
+
+        this._fxDelayTimer = setTimeout(() => {
+            this._langPickerState = OPENED;
+
+            this._langPickerAnimation
+                .opacity(1)
+                .translateY(0)
+                .step();
+
+            this.setData({
+                langPickerAnimationData: this._langPickerAnimation.export(),
+            });
+        }, 0);
+    },
+
+    _closeLangPicker() {
+        if (this._langPickerState & CLOSING + CLOSED) {
+            return;
+        }
+
+        this._langPickerState = CLOSING;
 
         this._langPickerAnimation
             .opacity(0)
@@ -111,10 +131,12 @@ export default {
             langPickerAnimationData: this._langPickerAnimation.export(),
         });
 
-        setTimeout(() => {
-            this._langPickerClosing = false;
+        clearTimeout(this._fxDelayTimer);
+
+        this._fxDelayTimer = setTimeout(() => {
+            this._langPickerState = CLOSED;
+
             this.setData({
-                langPickerItems: [],
                 showLangPicker: false
             });
 

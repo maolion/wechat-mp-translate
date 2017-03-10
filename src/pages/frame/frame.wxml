@@ -4,5 +4,8 @@
         <include src="components/starreds/starreds.wxml" />
     </view>
     <include src="components/tabbar/tabbar.wxml" />
-    <include src="components/lang-picker/lang-picker.wxml" />
+
+    <block wx:if="{{ showLangPicker}}">
+        <include src="components/lang-picker/lang-picker.wxml" />
+    </block>
 </view>

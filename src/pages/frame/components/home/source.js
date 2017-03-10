@@ -45,6 +45,8 @@ export default {
                     sourceLangButtonAnimationData: this._getLangButtonAnimationData(),
                 });
 
+                clearTimeout(this._langTransferDelayTimer);
+
                 this._langTransferDelayTimer = setTimeout(() => {
                     this.setData({
                         sourceLang: lang,
@@ -64,6 +66,8 @@ export default {
                 this.setData({
                     destLangButtonAnimationData: this._getLangButtonAnimationData(),
                 });
+
+                clearTimeout(this._langTransferDelayTimer);
 
                 this._langTransferDelayTimer = setTimeout(() => {
                     this.setData({

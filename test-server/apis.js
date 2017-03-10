@@ -28,6 +28,8 @@ server.get('/api/langs', function(req, res) {
     res.json(new Response(Constants.LANGS));
 });
 
+
+// 模拟数据生成
 // var task = [
 //     ['hello', 'en', 'zh'],
 //     ['world', 'en', 'zh'],
@@ -57,13 +59,9 @@ server.get('/api/langs', function(req, res) {
 //         })
 // }
 server.get('/api/histories', function(req, res) {
-    // res.json(new Response(
-    //     Mock.mock({
-    //         'list|0-20': {
-    //             source: ""
-    //         }
-    //     }).list
-    // ));
+    res.json(new Response(
+        require('./data/histories.json')
+    ));
 });
 
 ///////

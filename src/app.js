@@ -1,4 +1,3 @@
-
 import { app, provider } from './commons/kits/index';
 import store from './store';
 

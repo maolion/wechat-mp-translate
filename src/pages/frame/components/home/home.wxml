@@ -26,4 +26,19 @@
             <text>点击输入翻译内容</text>
         </view>
     </view>
+
+    <view class="histories-panel">
+        <scroll-view scroll-y="{{ true }}">
+            <button
+                class="words-button-card"
+                wx:key="history"
+                wx:for="{{ historyUids }}">
+                <view class="info">
+                    <text class="source-content">{{ translationMapping[item].source.content }}</text>
+                    <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
+                </view>
+                <image  />
+            </button>
+        </scroll-view>
+    </view>
 </view>

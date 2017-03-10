@@ -15,8 +15,8 @@ const app = getApp();
         return {
             app: state.app,
             langs: state.common.langs,
-            starred: state.starred,
-            histories: state.histories
+            translationMapping: state.translate.map,
+            historyUids: state.translate.historyUids
         }
     }
 )
@@ -35,6 +35,7 @@ class Frame extends Event {
     }
 
     onReady() {
+        console.log(this.data);
         this.switchSubPageTo(this.data.query.subpage || 'home');
     }
 

@@ -1,4 +1,4 @@
-<view class="lang-picker {{ showLangPicker ? 'show' : '' }}">
+<view class="lang-picker">
     <view
         animation="{{ langPickerAnimationData }}"
         class="picker-wrapper">
