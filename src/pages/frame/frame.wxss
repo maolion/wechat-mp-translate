@@ -20,16 +20,60 @@
 
 
 
-.words-button-card {
+.words-card-button {
     margin: 15rpx;
-    height: 160rpx;
     background: #fff;
     border-radius: 2rpx;
     border: none;
     box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .05);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    transition: background-color linear .2s;
 
     &:after {
         display: none;
+    }
+
+    &.button-hover {
+        background-color: #f2f2f2;
+    }
+
+    .info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 25rpx 30rpx;
+        padding-right: 0;
+    }
+
+    .source-content {
+        height: 60rpx;
+        line-height: 60rpx;
+        font-size: 40rpx;
+        color: #000;
+        text-align: left;
+    }
+
+    .dest-content {
+        height: 50rpx;
+        line-height: 50rpx;
+        font-size: 32rpx;
+        color: #999;
+        text-align: left;
+    }
+
+    .toggle-starred-btn {
+        width: 38rpx;
+        height: 38rpx;
+        line-height: 1;
+        padding: 25rpx 30rpx;
+
+        .icon {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
     }
 }

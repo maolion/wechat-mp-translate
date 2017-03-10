@@ -23,8 +23,14 @@ function processGetHistoriesAction(state, action) {
     let historyUids = [];
 
     for (let history of histories) {
-        translationMapping[history.data.uid] = history.data;
-        historyUids.push(history.data.uid);
+        let uid = history.data.uid;
+
+        translationMapping[uid] = {
+            ...translationMapping[uid],
+            ...history.data
+        };
+
+        historyUids.push(uid);
     }
 
     return {

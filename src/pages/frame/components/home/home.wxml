@@ -30,14 +30,18 @@
     <view class="histories-panel">
         <scroll-view scroll-y="{{ true }}">
             <button
-                class="words-button-card"
+                class="words-card-button"
                 wx:key="history"
                 wx:for="{{ historyUids }}">
                 <view class="info">
                     <text class="source-content">{{ translationMapping[item].source.content }}</text>
                     <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
                 </view>
-                <image  />
+                <view class="toggle-starred-btn">
+                    <image
+                        class="icon"
+                        src="/assets/icons/{{ translationMapping[item].starred ? 'starred' : 'unstarred' }}.png" />
+                </view>
             </button>
         </scroll-view>
     </view>

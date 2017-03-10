@@ -3,6 +3,7 @@
     "date": 1488978105271,
     "data": {
       "uid": 1,
+      "starred": true,
       "source": {
         "lang": "en",
         "content": "hello",
