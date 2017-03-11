@@ -4,7 +4,8 @@ export default {
         sourceLang: "英文", // TODO: 不应该写死
         destLang: "简体中文",
         sourceLangButtonAnimationData: {},
-        destLangButtonAnimationData: {}
+        destLangButtonAnimationData: {},
+        typings: false
     },
 
     onReady() {
@@ -75,6 +76,17 @@ export default {
                     });
                 }, 200);
             });
+    },
+
+    handleInputAreaFoucs() {
+        this.setData({
+            typing: true
+        });
+    },
+
+    handleInputAreaChange(event) {
+        let value = event.detail;
+        this._inputSourceValue = value;
     },
 
     _getLangButtonAnimationData() {

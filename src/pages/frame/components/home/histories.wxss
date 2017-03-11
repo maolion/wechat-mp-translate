@@ -4,6 +4,7 @@
     flex: 1;
     display: flex;
     width: 100%;
+
     scroll-view {
         flex: 1;
         display: block;

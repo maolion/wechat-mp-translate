@@ -1,0 +1,15 @@
+.suggestions-panel {
+    position: absolute;
+    top: 300rpx;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, .3);
+    z-index: 1;
+    animation: suggestionsPanelShow linear .1s;
+}
+
+@keyframes suggestionsPanelShow {
+    0% {
+        background: rgba(0, 0, 0, 0);
+    }
+}

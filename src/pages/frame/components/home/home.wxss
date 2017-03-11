@@ -1,5 +1,6 @@
 @import "./source.wxss";
 @import "./histories.wxss";
+@import "./suggestions.wxss";
 
 .home-page {
     height: 100%;

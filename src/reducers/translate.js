@@ -1,41 +1,84 @@
 import {
-    GET_HISTORIES
+    GET_HISTORIES,
+    TOGGLE_STARRED,
+    DELETE_HISTORIES
 } from '../action-type-map';
 
-const PLAIN_ARRAY = [];
+const EMPTY_LIST = [];
+const PLAIN_OBJECT = {};
 
 export default function(state, action = {}) {
-    state = state || PLAIN_ARRAY;
+    state = state || EMPTY_LIST;
 
-    switch (action.type) {
-        case GET_HISTORIES:
-            state = processGetHistoriesAction(state, action);
-            break;
-    }
-
-    return state;
+    return (
+        processMapping[action.type||'default'] || processMapping['default']
+    )(state, action);
 }
 
 
-function processGetHistoriesAction(state, action) {
-    let histories = action.payload;
-    let translationMapping = Object.assign({}, state.map);
-    let historyUids = [];
+var processMapping = {
+    [GET_HISTORIES]: (state, action) => {
+        let histories = action.payload;
+        let translationMapping = Object.assign({}, state.map);
+        let historyUids = [];
 
-    for (let history of histories) {
-        let uid = history.data.uid;
+        for (let history of histories) {
+            let uid = history.data.uid;
 
-        translationMapping[uid] = {
-            ...translationMapping[uid],
-            ...history.data
+            translationMapping[uid] = {
+                ...translationMapping[uid],
+                ...history.data
+            };
+
+            historyUids.push(uid);
+        }
+
+        return {
+            ...state,
+            map: translationMapping,
+            historyUids
         };
+    },
 
-        historyUids.push(uid);
+    [TOGGLE_STARRED]: (state, action) => {
+        let data = action.payload || PLAIN_OBJECT;
+        let uid = data.uid;
+        let translationMapping = Object.assign({}, state.map);
+        let translation = Object.assign({}, translationMapping[uid]);
+
+        translation.starred = data.starred;
+
+        translationMapping[uid] = translation;
+
+        return {
+            ...state,
+            map: translationMapping
+        };
+    },
+
+    [DELETE_HISTORIES]: (state, action) => {
+        let uids = action.payload || EMPTY_LIST;
+        let historyUids = (state.historyUids || EMPTY_LIST).slice();
+
+        let n = 0;
+
+        for (let i = 0, l = historyUids.length; i < l; i++) {
+            let uid = historyUids[i];
+
+            if (uids.indexOf(uid) === -1) {
+                historyUids[n++] = uid;
+            }
+        }
+
+        historyUids.length = n;
+
+        return {
+            ...state,
+            historyUids
+        }
+    },
+
+    'default': (state) => {
+        return state
     }
-
-    return {
-        ...state,
-        map: translationMapping,
-        historyUids
-    };
-}
+};

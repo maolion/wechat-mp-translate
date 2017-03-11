@@ -9,3 +9,5 @@ export const GET_LANGS = "GET_LANGS";
 
 // translate
 export const GET_HISTORIES = "GET_HISTORIES";
+export const TOGGLE_STARRED = "TOGGLE_STARRED";
+export const DELETE_HISTORIES = "DELETE_HISTORIES";

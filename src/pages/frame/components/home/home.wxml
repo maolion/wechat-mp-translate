@@ -1,4 +1,4 @@
-<view class="home-page page-container">
+<view class="home-page page-container {{ typing ? 'is-typing' : '' }}">
     <view class="source-panel">
         <view class="lang-select">
             <button
@@ -22,27 +22,52 @@
             </button>
         </view>
 
-        <view class="input-placeholder">
+        <view
+            wx:if="{{ !typing }}"
+            class="input-placeholder">
             <text>点击输入翻译内容</text>
         </view>
-    </view>
 
+        <view class="input-area">
+            <textarea
+                class="input"
+                maxlength="200"
+                bindinput="handleInputAreaChange"
+                bindfocus="handleInputAreaFoucs"/>
+
+            <button
+                class="translate-button">
+                <text>翻 译</text>
+            </button>
+        </view>
+    </view>
+    <view
+        wx:if="{{ typing }}"
+        class="suggestions-panel">
+
+    </view>
     <view class="histories-panel">
         <scroll-view scroll-y="{{ true }}">
-            <button
-                class="words-card-button"
+            <view
+                class="words-mini-card"
                 wx:key="history"
                 wx:for="{{ historyUids }}">
-                <view class="info">
+                <button
+                    data-uid="{{ item }}"
+                    bindlongtap="handleHistoryItemLongTap"
+                    class="card-button" >
                     <text class="source-content">{{ translationMapping[item].source.content }}</text>
                     <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
-                </view>
-                <view class="toggle-starred-btn">
+                </button>
+                <button
+                    data-uid="{{ item }}"
+                    catchtap="handleHistoryItemToggleStarredBtn"
+                    class="toggle-starred-btn">
                     <image
                         class="icon"
                         src="/assets/icons/{{ translationMapping[item].starred ? 'starred' : 'unstarred' }}.png" />
-                </view>
-            </button>
+                </button>
+            </view>
         </scroll-view>
     </view>
 </view>

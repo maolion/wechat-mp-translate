@@ -7,7 +7,9 @@ import store from '../store';
 
 
 import {
-    GET_HISTORIES
+    GET_HISTORIES,
+    TOGGLE_STARRED,
+    DELETE_HISTORIES
 } from '../action-type-map';
 
 
@@ -29,3 +31,27 @@ export function getHistories() {
             return histories;
         });
 }
+
+export function toggleStarred(uid, starred) {
+    return apis.translate.toggleStarred(uid, starred)
+        .then(() => {
+            store.dispatch({
+                type: TOGGLE_STARRED,
+                payload: {
+                    uid,
+                    starred
+                }
+            });
+        });
+}
+
+export function deleteHistories(uids) {
+    return apis.translate.deleteHistories(uids)
+        .then(() => {
+            store.dispatch({
+                type: DELETE_HISTORIES,
+                payload: uids
+            });
+        });
+}
+
