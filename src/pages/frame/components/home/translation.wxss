@@ -1,0 +1,213 @@
+@import '../../../../constants.wxss';
+
+.home-page.show-translation {
+    .source-panel {
+        height: 230rpx!important;
+    }
+
+    .translation-source {
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
+
+        .content {
+            height: 46rpx;
+        }
+    }
+
+    .source-panel .input-area {
+        left: 35rpx;
+        right: 65rpx;
+        width: auto;
+        bottom: auto;
+        padding: 0;
+        padding-top: 18rpx;
+        height: 70rpx;
+
+        overflow: hidden;
+        .input {
+            padding: 0;
+        }
+    }
+
+    .phonetic-button {
+        flex: 1;
+        border-radius: 0;
+        border: none;
+        background: 0;
+        display: flex;
+        width: 200%;
+        padding: 0;
+        padding-top: 5rpx;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        animation: phoneticButtonShow ease .5s;
+        position: relative;
+        margin-left: -35rpx;
+        padding-left: 35rpx;
+
+        &:after {
+            top: 5rpx;
+            background: rgba(0, 0, 0, 0);
+            transition: background-color linear .1s;
+            border: none;
+            border-radius: 0;
+        }
+
+        .icon {
+            width: 38rpx;
+            height: 38rpx;
+            margin-right: 10rpx;
+        }
+
+        .text {
+            color: #000;
+            font-size: 38rpx;
+        }
+
+        &.button-hover:after {
+            background: rgba(0, 0, 0, .1);
+        }
+    }
+}
+
+.home-page.show-translation .translation-dest {
+    width: 100%;
+    flex: 1;
+    background: @BACKGROUND_COLOR;
+    animation: translationDestShow ease .8s;
+    position: relative;
+    z-index: 0;
+
+    .definition-panel, .explains-panel {
+        box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .1);
+    }
+
+    .definition-panel {
+        border-radius: 2rpx;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background: @MAIN_COLOR;
+        margin: 15rpx;
+        overflow: hidden;
+    }
+
+    text {
+        padding: 0 25rpx;
+        font-weight: normal;
+        display: flex;
+        width: 100%;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+
+    button {
+        border: none;
+        border-radius: 0;
+        background: transparent;
+
+        &:after {
+            display: none;
+        }
+    }
+
+    .definition-panel text {
+        color: #fff;
+    }
+
+    .heading {
+        font-size: 28rpx;
+        opacity: .9;
+        padding-top: 20rpx;
+        padding-bottom: 20rpx;
+    }
+
+    .content {
+        height: 80rpx;
+        line-height: 80rpx;
+        font-size: 38rpx;
+    }
+
+    .phonetic-button {
+        animation: none;
+        margin-left: 0;
+        padding-left: 25rpx;
+        width: 100%;
+        height: 80rpx;
+
+        &:after {
+            top: 0;
+            display: block;
+        }
+
+        .text {
+            color: #fff;
+            padding: 0;
+        }
+    }
+
+    .toggle-starred-btn {
+        width: 38rpx;
+        height: 38rpx;
+        line-height: 1;
+        padding: 25rpx 30rpx;
+        display: block;
+        box-sizing: content-box;
+        transition: opacity linear .1s;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &.button-hover {
+            opacity: .3;
+        }
+
+        .icon {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+
+    .explains-panel {
+        margin: 15rpx;
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 2rpx;
+        padding-bottom: 20rpx;
+    }
+
+    .explains-panel .heading {
+        color: #888;
+        opacity: 1;
+        padding-bottom: 30rpx;
+    }
+
+    .explains-panel .explain {
+        font-size: 28rpx;
+        color: #444;
+        line-height: 40rpx;
+        padding-bottom: 10rpx;
+    }
+
+}
+
+
+@keyframes phoneticButtonShow {
+    0%,
+    40% {
+        opacity: 0;
+        transform: translateY(20rpx);
+    }
+}
+
+@keyframes translationDestShow {
+    0%, 40% {
+        opacity: 0;
+        transform: translate(0, -100rpx);
+    }
+}

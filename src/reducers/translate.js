@@ -1,7 +1,8 @@
 import {
     GET_HISTORIES,
     TOGGLE_STARRED,
-    DELETE_HISTORIES
+    DELETE_HISTORIES,
+    PUSH_HISTORY
 } from '../action-type-map';
 
 const EMPTY_LIST = [];
@@ -76,6 +77,29 @@ var processMapping = {
             ...state,
             historyUids
         }
+    },
+
+    [PUSH_HISTORY]: (state, action) => {
+        let translation = action.payload || PLAIN_OBJECT;
+
+        if (!translation.uid) {
+            return state;
+        }
+
+        let uid = translation.uid;
+        let translationMapping = Object.assign({}, state.map);
+        let historyUids = (state.historyUids || EMPTY_LIST).slice();
+
+        translationMapping[uid] = translation;
+
+        historyUids.splice(historyUids.indexOf(uid), 1);
+        historyUids.unshift(uid);
+
+        return {
+            ...state,
+            map: translationMapping,
+            historyUids
+        };
     },
 
     'default': (state) => {

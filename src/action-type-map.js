@@ -11,3 +11,4 @@ export const GET_LANGS = "GET_LANGS";
 export const GET_HISTORIES = "GET_HISTORIES";
 export const TOGGLE_STARRED = "TOGGLE_STARRED";
 export const DELETE_HISTORIES = "DELETE_HISTORIES";
+export const PUSH_HISTORY = "PUSH_HISTORY";

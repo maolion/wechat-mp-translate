@@ -88,25 +88,31 @@ export default {
         });
     },
 
+    handleCancelInputButtonTap() {
+        this.setData({
+            typing: false
+        });
+
+        this.querySuggestions('');
+    },
+
     handleInputAreaChange(event) {
+        if (!this.data.typing) {
+            this.setData({
+                typing: true
+            });
+        }
+
         let value = event.detail.value;
 
         clearTimeout(this._querySuggestionsDelayTimer);
+
         this._querySuggestionsDelayTimer = setTimeout(
             () => {
                 this.querySuggestions(value);
             },
             200
         );
-    },
-
-    handleCancelInputButtonTap() {
-        this.setData({
-            inputSourceValue: '',
-            typing: false
-        });
-
-        this.querySuggestions('');
     },
 
     _getLangButtonAnimationData() {

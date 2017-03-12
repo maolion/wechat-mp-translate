@@ -9,7 +9,8 @@ import store from '../store';
 import {
     GET_HISTORIES,
     TOGGLE_STARRED,
-    DELETE_HISTORIES
+    DELETE_HISTORIES,
+    PUSH_HISTORY
 } from '../action-type-map';
 
 
@@ -33,7 +34,18 @@ export function getHistories() {
 }
 
 export function toggleStarred(uid, starred) {
-    return apis.translate.toggleStarred(uid, starred)
+    let translationMapping = (store.getState().translate || {}).map || {};
+
+    if (!translationMapping[uid]) {
+        return Promise.void;
+    }
+
+    let translation = {
+        ...translationMapping[uid],
+        starred
+    };
+
+    return apis.translate.toggleStarred(translation)
         .then(() => {
             store.dispatch({
                 type: TOGGLE_STARRED,
@@ -55,3 +67,12 @@ export function deleteHistories(uids) {
         });
 }
 
+export function pushHistory(translation) {
+    return apis.translate.pushHistory(translation)
+        .handle(() => {
+            store.dispatch({
+                type: PUSH_HISTORY,
+                payload: translation
+            });
+        });
+}

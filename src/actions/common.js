@@ -18,11 +18,11 @@ export function getLangs() {
     return apis.common.getLangs()
         .then(res => {
             let langs = res.data || [];
-            let ret = { mapping: {}, texts: [] };
+            let ret = { map: {}, texts: [] };
 
             for (let lang of langs) {
-                ret.mapping[lang.key] = lang.text;
-                ret.mapping[lang.text] = lang.key;
+                ret.map[lang.key] = lang.text;
+                ret.map[lang.text] = lang.key;
                 ret.texts.push(lang.text);
             }
 

@@ -5,7 +5,12 @@ export default {
         this.once('homePageActived', this._loadHistories);
     },
 
-    handleHistoryItemToggleStarredBtn(event) {
+    handleHistoryItemBtnTap(event) {
+        let uid = event.currentTarget.dataset.uid;
+        this.showTranslation(uid);
+    },
+
+    handleHistoryItemToggleStarredBtnTap(event) {
         let uid = event.currentTarget.dataset.uid;
         this.toggleTranslationStarred(uid);
     },
@@ -26,21 +31,14 @@ export default {
     },
 
     _loadHistories() {
-        this.setData({
-            loadHistoriesFailed: false,
-            loadingHistories: true
-        });
 
         actions.translate.getHistories()
             .then(histories => {
-
-            })
-            .handle(hasError => {
                 this.setData({
-                    loadingHistories: false,
-                    loadHistoriesFailed: !!hasError
+                    translation: histories[0].data
                 });
-            });
+            })
+
     },
 
     _removeHistoryItem(uid) {

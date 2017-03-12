@@ -19,6 +19,7 @@ const PLAIN_OBJECT = {};
         return {
             app: state.app,
             langs: state.common.langs,
+            langMapping: (state.common.langs||PLAIN_OBJECT).map,
             translationMapping: state.translate.map,
             historyUids: state.translate.historyUids
         }

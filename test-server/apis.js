@@ -64,7 +64,11 @@ server.get('/api/histories', function(req, res) {
     ));
 });
 
-server.patch('/api/toggle-starred', function(req, res) {
+server.patch('/api/starred', function(req, res) {
+    res.json(new Response(null));
+});
+
+server.post('/api/history', function(req, res) {
     res.json(new Response(null));
 });
 

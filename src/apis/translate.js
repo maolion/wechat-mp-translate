@@ -5,8 +5,13 @@ export function getHistories() {
     return get("/api/histories");
 }
 
-export function toggleStarred(uid, starred) {
-    return patch('/api/toggle-starred', { uid, starred });
+export function toggleStarred(translation) {
+    return patch('/api/starred', { translation });
+}
+
+
+export function pushHistory(translation) {
+    return post('/api/history', { translation });
 }
 
 export function deleteHistories(uids) {

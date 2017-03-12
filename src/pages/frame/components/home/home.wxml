@@ -1,39 +1,74 @@
-<view class="home-page page-container {{ typing ? 'is-typing' : '' }}">
+<view
+    class="home-page page-container {{ typing ? 'is-typing' : '' }} {{ !typing && translation ? 'show-translation' : '' }}">
     <view class="source-panel">
+        <!--语言选择-->
         <view class="lang-select">
             <button
                 animation="{{ sourceLangButtonAnimationData }}"
                 class="lang-btn"
+                disabled="{{ !typing && translation }}"
                 bindtap="handleSourceLangButtonTap">
-                <text>{{ sourceLang }}</text>
+                <text>{{ !typing && translation ? langMapping[translation.source.lang] : sourceLang }}</text>
             </button>
 
             <button
+                wx:if="{{ typing || !translation }}"
                 class="transfer-btn"
                 bindtap="handleLangTransferButtonTap">
                 <image class="icon" src="/assets/icons/transfer.png" />
             </button>
 
             <button
+                disabled="{{ true }}"
+                wx:if="{{ !typing && translation }}"
+                class="transfer-btn">
+                <image class="icon" src="/assets/icons/arrow.png" />
+            </button>
+
+            <button
                 animation="{{ destLangButtonAnimationData }}"
                 class="lang-btn"
+                disabled="{{ !typing && translation }}"
                 bindtap="handleDestLangButtonTap">
-                <text>{{ destLang }}</text>
+                <text>{{ !typing && translation ? langMapping[translation.dest.lang] : destLang }}</text>
             </button>
         </view>
 
+        <!--初始占位-->
         <view
-            wx:if="{{ !typing }}"
+            wx:if="{{ !typing && !translation }}"
             class="input-placeholder">
             <text>点击输入翻译内容</text>
         </view>
 
+        <!--翻译结果, 源-->
+        <view
+            wx:if="{{ !typing && translation }}"
+            class="translation-source">
+            <text class="content">{{ translation.source.content }}</text>
+            <button
+                class="phonetic-button">
+                <image
+                    class="icon"
+                    src="/assets/icons/audio-black.png" />
+                <text class="text">{{ translation.source.phonetic }}</text>
+            </button>
+            <button
+                bindtap="backToHome"
+                class="close-button">
+                <image
+                    class="icon"
+                    src="/assets/icons/close.png" />
+            </button>
+        </view>
+
+        <!--翻译内容输入-->
         <view
             class="input-area">
             <textarea
-                value="{{ typing ? undefined : '' }}"
+                value="{{ !translation || typing ? (translation ? translation.source.content: undefined) : '' }}"
                 class="input"
-                maxlength="200"
+                maxlength="100"
                 bindfocus="handleInputAreaFoucs"
                 bindtap="handleInputAreaFoucs"
                 bindinput="handleInputAreaChange"/>
@@ -53,6 +88,8 @@
             </block>
         </view>
     </view>
+
+    <!--输入推介选择列表-->
     <scroll-view
         scroll-y="{{ true }}"
         wx:if="{{ typing }}"
@@ -65,7 +102,7 @@
                 wx:for="{{ suggestionUids }}">
                 <button
                     data-uid="{{ item }}"
-                    bindlongtap="handleHistoryItemLongTap"
+                    bindtap="handleHistoryItemBtnTap"
                     class="card-button" >
                     <text class="source-content">{{ translationMapping[item].source.content }}</text>
                     <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
@@ -73,7 +110,46 @@
             </view>
         </block>
     </scroll-view>
-    <view class="histories-panel">
+
+    <scroll-view
+        scroll-y="{{ true }}"
+        wx:if="{{ !typing && translation }}"
+        class="translation-dest">
+        <view class="definition-panel">
+            <text class="heading">{{ langMapping[translation.dest.lang] }}定义</text>
+            <text class="content">{{ translation.dest.content }}</text>
+            <button
+                class="phonetic-button">
+                <image
+                    class="icon"
+                    src="/assets/icons/audio-white.png" />
+                <text class="text">{{ translation.dest.phonetic }}</text>
+            </button>
+            <button
+                data-uid="{{ translation.uid }}"
+                catchtap="handleHistoryItemToggleStarredBtnTap"
+                class="toggle-starred-btn">
+                <image
+                    class="icon"
+                    src="/assets/icons/{{ translationMapping[translation.uid].starred ? 'starred' : 'unstarred-white' }}.png" />
+            </button>
+        </view>
+
+        <view
+            wx:if="{{ translation.dest.explains && translation.dest.explains.length }}"
+            class="explains-panel">
+            <text class="heading">解释</text>
+            <text
+                wx:key="explain"
+                wx:for="{{ translation.dest.explains }}"
+                class="explain">{{ item }}</text>
+        </view>
+    </scroll-view>
+
+    <!--全部历史搜索-->
+    <view
+        wx:if="{{ typing || !translation }}"
+        class="histories-panel">
         <scroll-view scroll-y="{{ true }}">
             <view
                 class="words-mini-card"
@@ -81,14 +157,15 @@
                 wx:for="{{ historyUids }}">
                 <button
                     data-uid="{{ item }}"
-                    bindlongtap="handleHistoryItemLongTap"
+                    bindtap="handleHistoryItemBtnTap"
+                    bindlongtap="handleHistoryItemTap"
                     class="card-button" >
                     <text class="source-content">{{ translationMapping[item].source.content }}</text>
                     <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
                 </button>
                 <button
                     data-uid="{{ item }}"
-                    catchtap="handleHistoryItemToggleStarredBtn"
+                    catchtap="handleHistoryItemToggleStarredBtnTap"
                     class="toggle-starred-btn">
                     <image
                         class="icon"
