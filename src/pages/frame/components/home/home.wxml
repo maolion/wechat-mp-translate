@@ -28,24 +28,51 @@
             <text>点击输入翻译内容</text>
         </view>
 
-        <view class="input-area">
+        <view
+            class="input-area">
             <textarea
+                value="{{ typing ? undefined : '' }}"
                 class="input"
                 maxlength="200"
-                bindinput="handleInputAreaChange"
-                bindfocus="handleInputAreaFoucs"/>
+                bindfocus="handleInputAreaFoucs"
+                bindtap="handleInputAreaFoucs"
+                bindinput="handleInputAreaChange"/>
+            <block wx:if="{{ typing }}">
+                <button
+                    class="translate-button">
+                    <text>翻 译</text>
+                </button>
 
-            <button
-                class="translate-button">
-                <text>翻 译</text>
-            </button>
+                <button
+                    bindtap="handleCancelInputButtonTap"
+                    class="close-button">
+                    <image
+                        class="icon"
+                        src="/assets/icons/close.png" />
+                </button>
+            </block>
         </view>
     </view>
-    <view
+    <scroll-view
+        scroll-y="{{ true }}"
         wx:if="{{ typing }}"
-        class="suggestions-panel">
-
-    </view>
+        class="suggestions-panel {{ suggestionUids && suggestionUids.length ? 'no-transparent' : '' }}">
+        <block wx:if="{{ suggestionUids && suggestionUids.length }}">
+            <text class="heading">来自查询历史</text>
+            <view
+                class="words-mini-card"
+                wx:key="suggestions"
+                wx:for="{{ suggestionUids }}">
+                <button
+                    data-uid="{{ item }}"
+                    bindlongtap="handleHistoryItemLongTap"
+                    class="card-button" >
+                    <text class="source-content">{{ translationMapping[item].source.content }}</text>
+                    <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
+                </button>
+            </view>
+        </block>
+    </scroll-view>
     <view class="histories-panel">
         <scroll-view scroll-y="{{ true }}">
             <view

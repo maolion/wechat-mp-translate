@@ -1,3 +1,5 @@
+@import "../../../../constants.wxss";
+
 .suggestions-panel {
     position: absolute;
     top: 300rpx;
@@ -5,7 +7,21 @@
     width: 100%;
     background: rgba(0, 0, 0, .3);
     z-index: 1;
+    transition: background-color linear .05s;
     animation: suggestionsPanelShow linear .1s;
+
+    &.no-transparent {
+        background: @BACKGROUND_COLOR;
+    }
+
+    .heading {
+        font-size: 26rpx;
+        color: rgba(0, 0, 0, .5);
+        line-height: 1;
+        margin: 15rpx;
+        display: block;
+
+    }
 }
 
 @keyframes suggestionsPanelShow {

@@ -79,14 +79,34 @@ export default {
     },
 
     handleInputAreaFoucs() {
+        if (this.data.typing) {
+            return;
+        }
+
         this.setData({
             typing: true
         });
     },
 
     handleInputAreaChange(event) {
-        let value = event.detail;
-        this._inputSourceValue = value;
+        let value = event.detail.value;
+
+        clearTimeout(this._querySuggestionsDelayTimer);
+        this._querySuggestionsDelayTimer = setTimeout(
+            () => {
+                this.querySuggestions(value);
+            },
+            200
+        );
+    },
+
+    handleCancelInputButtonTap() {
+        this.setData({
+            inputSourceValue: '',
+            typing: false
+        });
+
+        this.querySuggestions('');
     },
 
     _getLangButtonAnimationData() {
