@@ -47,10 +47,12 @@
             class="translation-source">
             <text class="content">{{ translation.source.content }}</text>
             <button
+                disabled="{{ playingSourceVoice }}"
+                bindtap="handleSourcePhoneticButtonTap"
                 class="phonetic-button">
                 <image
-                    class="icon"
-                    src="/assets/icons/audio-black.png" />
+                    class="icon {{ playingSourceVoice ? 'spinner' : '' }}"
+                    src="/assets/icons/{{ playingSourceVoice ? 'loading' : 'audio-black' }}.png" />
                 <text class="text">{{ translation.source.phonetic }}</text>
             </button>
             <button
@@ -119,10 +121,12 @@
             <text class="heading">{{ langMapping[translation.dest.lang] }}定义</text>
             <text class="content">{{ translation.dest.content }}</text>
             <button
+                disabled="{{ playingDestVoice }}"
+                bindtap="handleDestPhoneticButtonTap"
                 class="phonetic-button">
                 <image
-                    class="icon"
-                    src="/assets/icons/audio-white.png" />
+                    class="icon {{ playingDestVoice ? 'spinner' : '' }}"
+                    src="/assets/icons/{{ playingDestVoice ? 'loading-white' : 'audio-white' }}.png" />
                 <text class="text">{{ translation.dest.phonetic }}</text>
             </button>
             <button
@@ -174,4 +178,13 @@
             </view>
         </scroll-view>
     </view>
+
+    <!--voice player-->
+    <audio
+        id="voice"
+        binderror="handleVoiceError"
+        bindplay="handleVoicePlay"
+        bindended="handleVoiceEnded"
+        controls="{{ false }}" >
+    </audio>
 </view>

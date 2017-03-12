@@ -8,6 +8,7 @@ git clone https://github.com/maolion/wechat-mp-translate.git
 cd wechat-mp-translate
 
 npm install
+# yarn install
 
 cp src/config.js.sample src/config.js
 # 如果需要 可以修改 src/config.js 的配置

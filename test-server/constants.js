@@ -2,6 +2,12 @@ var Path = require("path");
 
 exports.PORT = 8283;
 
+// 百度语音API
+exports.BAIDU_OAUTH_TOKEN = "https://openapi.baidu.com/oauth/2.0/token";
+exports.BAIDU_YUYIN_KEY = "vNlvH6gMeRUR9FL8Vt41K6eu";
+exports.BAIDU_YUYIN_SKEY = "d25fd1dbd571260d44e1ec516e1aecc3";
+exports.BAIDU_YUYIN_API = "http://tsn.baidu.com/text2audio";
+
 // 百度翻译
 exports.BAIDU_FANYI_API = "http://api.fanyi.baidu.com/api/trans/vip/translate";
 exports.BAIDU_FANYI_API_APPID = "20170307000041712";

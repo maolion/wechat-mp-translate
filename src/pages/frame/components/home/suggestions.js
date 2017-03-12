@@ -6,6 +6,8 @@ export default {
         let nextSuggestionUids = [];
         let translationMapping = this.data.translationMapping;
 
+        value = (value||'').toLowerCase();
+
         for (let key of Object.keys(translationMapping)) {
             if (!value) {
                 break;
@@ -19,7 +21,7 @@ export default {
                 continue;
             }
 
-            if (translation.source.content.indexOf(value) !== -1) {
+            if (translation.source.content.toLowerCase().indexOf(value) !== -1) {
                 nextSuggestionUids.push(translation.uid);
             }
         }

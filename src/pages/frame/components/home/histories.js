@@ -31,14 +31,7 @@ export default {
     },
 
     _loadHistories() {
-
-        actions.translate.getHistories()
-            .then(histories => {
-                this.setData({
-                    translation: histories[0].data
-                });
-            })
-
+        actions.translate.getHistories();
     },
 
     _removeHistoryItem(uid) {

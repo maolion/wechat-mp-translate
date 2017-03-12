@@ -1,9 +1,12 @@
 var Path = require("path");
 var Mock = require("mockjs");
+var QueryString = require('querystring');
+var fetch = require('node-fetch');
+var macaddress = require('macaddress');
+
 var server = require("./server");
 var Translate = require('./translate');
 var Constants = require('./constants');
-
 var HOST = 'http://localhost:' + Constants.PORT ;
 
 server.post('/api/auth', function(req, res) {
@@ -76,6 +79,45 @@ server.delete('/api/histories', function(req, res) {
     res.json(new Response(null));
 });
 
+server.get('/api/voice', function(req, res) {
+    let tok = '';
+    getBaiduOpenAPIAccessToken()
+        .then(token => tok = token)
+        .then(getMacAddress)
+        .then(macaddress => {
+            let text = req.query.text;
+            let lang = req.query.lang;
+            let url = Constants.BAIDU_YUYIN_API;
+            let queryString = QueryString.stringify({
+                tex: encodeURIComponent(text),
+                lan: lang,
+                ctp: 1,
+                tok: tok,
+                cuid: macaddress
+            });
+
+            return fetch(`${url}?${queryString}`)
+                .then(res => {
+                    if (res.headers.get('content-type').toLowerCase().indexOf('mp3') !== -1) {
+                        return res.buffer();
+                    } else {
+
+                        return res.json()
+                            .then(res => {
+                                throw res;
+                            });
+                    }
+                })
+                .then(buffer => {
+                    res.setHeader('Content-Type', 'audio/mp3')
+                    res.send(buffer);
+                });
+        })
+        .catch(reason => {
+            res.status(500).send(JSON.stringify(reason));
+        });
+});
+
 ///////
 
 function Response(data) {
@@ -94,3 +136,37 @@ function ResponseError(code, message) {
     this.data = null;
 }
 
+function getBaiduOpenAPIAccessToken() {
+    if (getBaiduOpenAPIAccessToken._promise) {
+        return getBaiduOpenAPIAccessToken._promise;
+    }
+
+    var url = Constants.BAIDU_OAUTH_TOKEN;
+    var queryString = QueryString.stringify({
+        grant_type: 'client_credentials',
+        client_id: Constants.BAIDU_YUYIN_KEY,
+        client_secret: Constants.BAIDU_YUYIN_SKEY
+    });
+
+    return getBaiduOpenAPIAccessToken._promise = fetch(`${url}?${queryString}`)
+        .then(res => res.json())
+        .then(res => res.access_token)
+        .catch(reason => {
+            getBaiduOpenAPIAccessToken._promise = null;
+            throw reason;
+        });
+}
+
+function getMacAddress() {
+    return getMacAddress._promise = getMacAddress._promise || new Promise((resolve, reject) => {
+        macaddress.one(function (err, macaddress) {
+            if (err) {
+                getMacAddress._promise = null;
+                reject();
+                return;
+            }
+
+            resolve(macaddress);
+        });
+    });
+}

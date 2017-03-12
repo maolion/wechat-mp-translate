@@ -4,10 +4,11 @@ import Source from './source';
 import Suggestions from './suggestions';
 import Histories from './histories';
 import Translation from './translation';
+import Voice from './voice';
 
-@mixin(Source, Histories, Suggestions, Translation)
+@mixin(Source, Histories, Suggestions, Translation, Voice)
 export default class HomePage {
-   backToHome() {
+    backToHome() {
         this.setData({
             typing: false,
             translation: null,

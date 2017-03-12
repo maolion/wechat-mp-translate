@@ -20,7 +20,6 @@
         line-height: 1;
         margin: 15rpx;
         display: block;
-
     }
 }
 
