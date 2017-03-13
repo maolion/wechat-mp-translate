@@ -1,6 +1,6 @@
 # 基于微信小程序开发框架的 Google Translate(IOS) 山寨版 (优质 demon 实现)
 
-![cover](./cover.png)
+![cover](./app-cover.png)
 
 [点击查看DEMO演示录像](http://7xi3xn.com1.z0.glb.clouddn.com/wechat-mp-translate.mp4)
 
@@ -25,7 +25,7 @@
 .
 ├── .gitignore                  # git ignore 配置
 ├── README.md                   # 帮助文档
-├── cover.png                   # 封面图
+├── app-cover.png               # 封面图
 ├── dist                        # 编译输出目录
 ├── gulpfile.js                 # gulp 配置
 ├── jsconfig.json               # vscode jsconfig.json
