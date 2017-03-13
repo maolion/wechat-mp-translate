@@ -41,7 +41,6 @@ class Frame extends Event {
     }
 
     onReady() {
-        actions.common.getLangs();
         this.switchSubPageTo(this.data.query.subpage || 'home');
     }
 

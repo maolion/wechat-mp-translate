@@ -26,6 +26,7 @@ class Lanuch {
 
         actions.app.login()
             .then(actions.app.getUserInfo)
+            .then(actions.common.getLangs)
             .then(() => {
                 console.log("login success!");
                 wx.redirectTo({
