@@ -67,7 +67,8 @@ cp src/config.js.sample src/config.js
 npm run build && npm run server
 ```
 
-然后在 微信web开发者工具里添加该项目, 项目目录是 ```path/to/wechat-mp-translate/dist```
+然后在 微信web开发者工具里添加该项目, 项目目录是 ```path/to/wechat-mp-translate/dist```。
+另外，在 微信web开发者工具里 取消该项目 的 ```开启 ES6 转 ES5``` 配置选项
 
 ## 源码编辑/调试
 
