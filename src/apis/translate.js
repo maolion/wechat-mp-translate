@@ -5,10 +5,13 @@ export function getHistories() {
     return get("/api/histories");
 }
 
+export function getStarreds() {
+    return get('/api/starreds');
+}
+
 export function toggleStarred(translation) {
     return patch('/api/starred', { translation });
 }
-
 
 export function pushHistory(translation) {
     return post('/api/history', { translation });

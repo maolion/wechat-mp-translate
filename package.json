@@ -28,6 +28,7 @@
   "scripts": {
     "start": "(cd test-server && (nodemon index.js || node index.js)) & gulp",
     "build": "rimraf dist && gulp build",
+    "server": "node test-server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -6,6 +6,10 @@ export default {
     },
 
     handleHistoryItemBtnTap(event) {
+        if (this._historyActionSheetShowing) {
+            return;
+        }
+
         let uid = event.currentTarget.dataset.uid;
         this.showTranslation(uid);
     },
@@ -18,6 +22,8 @@ export default {
     handleHistoryItemLongTap(event) {
         let uid = event.currentTarget.dataset.uid;
 
+        this._historyActionSheetShowing = true;
+
         wx.showActionSheet({
             itemList: ['删除项目'],
             success: (res) => {
@@ -26,6 +32,9 @@ export default {
                 }
 
                 this._removeHistoryItem(uid);
+            },
+            complete: () => {
+                this._historyActionSheetShowing = false;
             }
         });
     },

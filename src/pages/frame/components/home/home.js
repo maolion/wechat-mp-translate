@@ -8,6 +8,11 @@ import Voice from './voice';
 
 @mixin(Source, Histories, Suggestions, Translation, Voice)
 export default class HomePage {
+    onReady() {
+        this.on('homePageActived', () => {
+        });
+    }
+
     backToHome() {
         this.setData({
             typing: false,

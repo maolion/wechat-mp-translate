@@ -1,0 +1,33 @@
+<view class="starreds-page page-container">
+    <view class="heading">
+        <text>星标的</text>
+    </view>
+    <scroll-view scroll-y="{{ true }}">
+        <view
+            class="words-mini-card"
+            wx:key="starreds"
+            wx:for="{{ starredUids }}">
+            <button
+                data-uid="{{ item }}"
+                bindtap="handleStarredItemBtnTap"
+                bindlongtap="handleStarredItemLongTap"
+                class="card-button" >
+                <text class="source-content">{{ translationMapping[item].source.content }}</text>
+                <text class="dest-content">{{ translationMapping[item].dest.content }}</text>
+            </button>
+            <button
+                data-uid="{{ item }}"
+                catchtap="handleStarredItemToggleStarredBtnTap"
+                class="toggle-starred-btn">
+                <image
+                    class="icon"
+                    src="/assets/icons/{{ translationMapping[item].starred ? 'starred' : 'unstarred' }}.png" />
+            </button>
+        </view>
+        <view
+            wx:if="{{ !starredUids || !starredUids.length }}"
+            class="empty-tip">
+            <text>您的星标列表为空！</text>
+        </view>
+    </scroll-view>
+</view>

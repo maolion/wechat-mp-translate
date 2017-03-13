@@ -159,7 +159,7 @@
         <scroll-view scroll-y="{{ true }}">
             <view
                 class="words-mini-card"
-                wx:key="history"
+                wx:key="histories"
                 wx:for="{{ historyUids }}">
                 <button
                     data-uid="{{ item }}"

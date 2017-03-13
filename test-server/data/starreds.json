@@ -1,0 +1,24 @@
+[
+    {
+        "date": 1488978105271,
+        "data": {
+            "uid": 1,
+            "starred": true,
+            "source": {
+                "lang": "en",
+                "content": "hello",
+                "phonetic": "hə'ləʊ; he-"
+            },
+            "dest": {
+                "content": "你好",
+                "phonetic": "nǐ hǎo",
+                "explains": [
+                "n. 表示问候， 惊奇或唤起注意时的用语",
+                "int. 喂；哈罗",
+                "n. (Hello)人名；(法)埃洛"
+                ],
+                "lang": "zh"
+            }
+        }
+    }
+]

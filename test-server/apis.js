@@ -71,6 +71,12 @@ server.patch('/api/starred', function(req, res) {
     res.json(new Response(null));
 });
 
+server.get('/api/starreds', function(req, res) {
+    res.json(new Response(
+        require('./data/starreds.json')
+    ));
+});
+
 server.post('/api/history', function(req, res) {
     res.json(new Response(null));
 });

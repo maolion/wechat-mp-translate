@@ -3,7 +3,6 @@ import config from '../../../../config';
 
 export default {
     onReady() {
-        console.log(".....");
         this._voiceAudioCtx = this.audioCtx = wx.createAudioContext('voice');
     },
     playVoice(content) {

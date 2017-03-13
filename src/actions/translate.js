@@ -8,6 +8,7 @@ import store from '../store';
 
 import {
     GET_HISTORIES,
+    GET_STARREDS,
     TOGGLE_STARRED,
     DELETE_HISTORIES,
     PUSH_HISTORY,
@@ -23,7 +24,7 @@ export function getHistories() {
         .then(res => {
             let histories = res.data || [];
 
-            histories.sort((a, b) => a.date > b.date ? 1 : -1);
+            histories.sort((a, b) => a.date > b.date ? -1 : 1);
 
             store.dispatch({
                 type: GET_HISTORIES,
@@ -31,6 +32,22 @@ export function getHistories() {
             });
 
             return histories;
+        });
+}
+
+export function getStarreds() {
+    return apis.translate.getStarreds()
+        .then(res => {
+            let starreds = res.data || [];
+
+            starreds.sort((a, b) => a.date > b.date ? -1 : 1);
+
+            store.dispatch({
+                type: GET_STARREDS,
+                payload: starreds
+            });
+
+            return starreds;
         });
 }
 

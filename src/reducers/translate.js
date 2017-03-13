@@ -3,7 +3,8 @@ import {
     TOGGLE_STARRED,
     DELETE_HISTORIES,
     PUSH_HISTORY,
-    ADD_TRANSLATION
+    ADD_TRANSLATION,
+    GET_STARREDS
 } from '../action-type-map';
 
 const EMPTY_LIST = [];
@@ -22,6 +23,7 @@ var processMapping = {
     [GET_HISTORIES]: (state, action) => {
         let histories = action.payload;
         let translationMapping = Object.assign({}, state.map);
+        let starredUids = (state.starredUids || EMPTY_LIST).slice();
         let historyUids = [];
 
         for (let history of histories) {
@@ -32,13 +34,18 @@ var processMapping = {
                 ...history.data
             };
 
+            if (history.data.starred && starredUids.indexOf(uid) === -1) {
+                starredUids.push(uid);
+            }
+
             historyUids.push(uid);
         }
 
         return {
             ...state,
             map: translationMapping,
-            historyUids
+            historyUids,
+            starredUids
         };
     },
 
@@ -46,14 +53,22 @@ var processMapping = {
         let data = action.payload || PLAIN_OBJECT;
         let uid = data.uid;
         let translationMapping = Object.assign({}, state.map);
+        let starredUids = (state.starredUids || EMPTY_LIST).slice();
         let translation = Object.assign({}, translationMapping[uid]);
 
         translation.starred = data.starred;
 
         translationMapping[uid] = translation;
 
+        if (!data.starred) {
+            starredUids.splice(starredUids.indexOf(uid), 1);
+        } else if (starredUids.indexOf(uid) === -1) {
+            starredUids.push(uid);
+        }
+
         return {
             ...state,
+            starredUids,
             map: translationMapping
         };
     },
@@ -119,6 +134,34 @@ var processMapping = {
             ...state,
             map: translationMapping
         }
+    },
+
+    [GET_STARREDS]: (state, action) => {
+        let starreds = action.payload;
+        let translationMapping = Object.assign({}, state.map);
+        let starredUids = (state.starredUids || EMPTY_LIST).slice();
+
+        for (let starred of starreds) {
+            let translation = starred.data;
+            let uid = translation.uid;
+
+            translation.starred = true;
+
+            translationMapping[uid] = {
+                ...translationMapping[uid],
+                ...translation
+            };
+
+            if (starredUids.indexOf(uid) === -1) {
+                starredUids.push(uid);
+            }
+        }
+
+        return {
+            ...state,
+            map: translationMapping,
+            starredUids
+        };
     },
 
     'default': (state) => {

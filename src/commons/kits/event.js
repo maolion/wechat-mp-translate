@@ -19,22 +19,23 @@ export default class Event {
         if (!handler) {
             this._events[type] = [];
         } else {
-            let handlers = this._events[type];
+            let handlers = this._events[type].slice();
             let n = 0;
 
             for (let i = 0, l = handlers.length; i < l; i++) {
                 if (handlers[i] !== handler) {
-                    handlers[n++] = handler;
+                    handlers[n++] = handlers[i];
                 }
             }
 
             handlers.length = n;
+            this._events[type] = handlers;
         }
     }
 
     once(type, handler) {
         let self = this;
-        
+
         this.on(type, wrapper);
         return wrapper;
 

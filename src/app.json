@@ -1,7 +1,7 @@
 {
     "pages":[
-        "pages/frame/frame",
-        "pages/launch/launch"
+        "pages/launch/launch",
+        "pages/frame/frame"
     ],
     "window":{
         "backgroundColor": "#eeeeee",

@@ -21,7 +21,8 @@ const PLAIN_OBJECT = {};
             langs: state.common.langs,
             langMapping: (state.common.langs||PLAIN_OBJECT).map,
             translationMapping: state.translate.map,
-            historyUids: state.translate.historyUids
+            historyUids: state.translate.historyUids,
+            starredUids: state.translate.starredUids
         }
     }
 )

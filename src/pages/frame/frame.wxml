@@ -1,7 +1,11 @@
 <view class="container">
     <view class="tab-content-wrapper">
+        <block wx:if="{{ subpage === 'home' }}">
         <include src="components/home/home.wxml" />
+        </block>
+        <block wx:if="{{ subpage === 'starreds' }}">
         <include src="components/starreds/starreds.wxml" />
+        </block>
     </view>
     <include src="components/tabbar/tabbar.wxml" />
 
