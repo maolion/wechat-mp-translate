@@ -76,8 +76,10 @@
                 bindinput="handleInputAreaChange"/>
             <block wx:if="{{ typing }}">
                 <button
+                    disabled="{{ translating }}"
+                    bindtap="handleTranslateButtonTap"
                     class="translate-button">
-                    <text>翻 译</text>
+                    <text>{{ translating ? '翻译中...' : '翻 译' }}</text>
                 </button>
 
                 <button
@@ -162,7 +164,7 @@
                 <button
                     data-uid="{{ item }}"
                     bindtap="handleHistoryItemBtnTap"
-                    bindlongtap="handleHistoryItemTap"
+                    bindlongtap="handleHistoryItemLongTap"
                     class="card-button" >
                     <text class="source-content">{{ translationMapping[item].source.content }}</text>
                     <text class="dest-content">{{ translationMapping[item].dest.content }}</text>

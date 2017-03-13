@@ -10,7 +10,8 @@ import {
     GET_HISTORIES,
     TOGGLE_STARRED,
     DELETE_HISTORIES,
-    PUSH_HISTORY
+    PUSH_HISTORY,
+    ADD_TRANSLATION
 } from '../action-type-map';
 
 
@@ -74,5 +75,19 @@ export function pushHistory(translation) {
                 type: PUSH_HISTORY,
                 payload: translation
             });
+        });
+}
+
+export function getTranslation(word, from, to) {
+    return apis.translate.getTranslation(word, from, to)
+        .then(res => {
+            let translation = res.data;
+
+            store.dispatch({
+                type: ADD_TRANSLATION,
+                payload: translation
+            });
+
+            return translation;
         });
 }

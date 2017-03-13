@@ -79,6 +79,28 @@ server.delete('/api/histories', function(req, res) {
     res.json(new Response(null));
 });
 
+server.get('/api/translation', function(req, res) {
+    let word = decodeURIComponent(req.query.word);
+    let from = req.query.from;
+    let to = req.query.to;
+    let oword = word;
+
+    if (word.indexOf('谁最帅') > -1) {
+        word = '狮子最帅!';
+    } else if (word.indexOf('狮子帅吗') > -1) {
+        word = '是的, 狮子最帅!';
+    }
+
+    Translate.query(word, from, to)
+        .then(translation => {
+            translation.source.content = oword;
+            res.json(new Response(translation));
+        })
+        .catch(reason => {
+            res.json(new ResponseError(500, '翻译失败'));
+        });
+});
+
 server.get('/api/voice', function(req, res) {
     let tok = '';
     getBaiduOpenAPIAccessToken()

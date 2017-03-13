@@ -28,6 +28,7 @@ exports.query = function query(word, from, to) {
         .then(res => res || handler(word, from, to))
         .then(res => {
             Cache.set(cacheKey, res);
+            ret.uid = Date.now();
             ret.dest = res;
             ret.source.phonetic = ret.dest.phonetic;
             ret.dest.phonetic = null;

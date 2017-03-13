@@ -2,7 +2,8 @@ import {
     GET_HISTORIES,
     TOGGLE_STARRED,
     DELETE_HISTORIES,
-    PUSH_HISTORY
+    PUSH_HISTORY,
+    ADD_TRANSLATION
 } from '../action-type-map';
 
 const EMPTY_LIST = [];
@@ -100,6 +101,24 @@ var processMapping = {
             map: translationMapping,
             historyUids
         };
+    },
+
+    [ADD_TRANSLATION]: (state, action) => {
+        let translation = action.payload || PLAIN_OBJECT;
+
+        if (!translation.uid) {
+            return state;
+        }
+
+        let uid = translation.uid;
+        let translationMapping = Object.assign({}, state.map);
+
+        translationMapping[uid] = translation;
+
+        return {
+            ...state,
+            map: translationMapping
+        }
     },
 
     'default': (state) => {

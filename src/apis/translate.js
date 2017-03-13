@@ -17,3 +17,7 @@ export function pushHistory(translation) {
 export function deleteHistories(uids) {
     return del('/api/histories', { uids });
 }
+
+export function getTranslation(word, from, to) {
+    return get('/api/translation', { word, from, to });
+}

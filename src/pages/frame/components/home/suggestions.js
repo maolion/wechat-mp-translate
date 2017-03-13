@@ -4,7 +4,7 @@ export default {
         let sourceLang = this.data.langMapping[this.data.sourceLang];
         let destLang = this.data.langMapping[this.data.destLang];
         let nextSuggestionUids = [];
-        let translationMapping = this.data.translationMapping;
+        let translationMapping = this.data.translationMapping || {};
 
         value = (value||'').toLowerCase();
 

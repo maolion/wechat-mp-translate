@@ -1,3 +1,4 @@
+const PLAIN_OBJECT = {};
 
 export default {
     data: {
@@ -104,7 +105,7 @@ export default {
         }
 
         let value = event.detail.value;
-
+        this._inputSourceContent = value;
         clearTimeout(this._querySuggestionsDelayTimer);
 
         this._querySuggestionsDelayTimer = setTimeout(
@@ -113,6 +114,37 @@ export default {
             },
             200
         );
+    },
+
+    handleTranslateButtonTap() {
+        if (!this._inputSourceContent) {
+            return;
+        }
+
+        this.setData({
+            translating: true
+        });
+
+        let langMapping = this.data.langMapping || PLAIN_OBJECT;
+
+        this.translate(
+            this._inputSourceContent,
+            langMapping[this.data.sourceLang],
+            langMapping[this.data.destLang]
+        )
+            .handle(() => {
+                this.setData({
+                    translating: false
+                });
+            })
+            .catch(reason => {
+                wx.showModal({
+                    title: "提示",
+                    content: "翻译出错，请重试!",
+                    showCancel: false
+                });
+            });
+
     },
 
     _getLangButtonAnimationData() {
