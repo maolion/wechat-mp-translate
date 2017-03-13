@@ -1,4 +1,4 @@
-# 基于微信小程序开发框架的 Google Translate(IOS) 山寨版 (优质 demon 实现)
+# 基于微信小程序开发框架的 Google Translate(IOS) 山寨版 (优质 demo 实现)
 
 ![cover](./app-cover.png)
 
